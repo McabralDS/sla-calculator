@@ -66,4 +66,22 @@ export class SlaBuilder {
   public calculate(): number {
     return this.isBusinessDay() ? this.options.workHours : 0;
   }
+
+  public finalSla(): string {
+    const { data, workHours, startHour, endHour } = this.options;
+    let remainingHours = workHours;
+    let currentDate = new Date(data);
+
+    while (remainingHours > 0) {
+      if (this.isBusinessDay()) {
+      const availableHours = Math.min(endHour - startHour, remainingHours);
+      currentDate.setHours(startHour + availableHours, 0, 0, 0);
+      remainingHours -= availableHours;
+      }
+      currentDate.setDate(currentDate.getDate() + 1);
+      currentDate.setHours(startHour, 0, 0, 0);
+    }
+
+    return currentDate.toISOString();
+  }
 }
