@@ -1,20 +1,20 @@
 import { formatISODate, toDate } from '../utils/date.utils';
 import configHolidays from './holidays.json';
-import { Holiday, HolidayByContry } from '../types';
+import { Holiday, HolidayByCountry } from '../types';
 
-export function getHolidays(contry: string, state: string, year: number, extraHolidays: Holiday[]): string[] {
+export function getHolidays(country: string, state: string, year: number, extraHolidays: Holiday[]): string[] {
   const holidays: string[] = [];
 
   // National Holidays
-  const nationalHolidays: HolidayByContry = configHolidays as HolidayByContry;
-  const nationalHolidaysByContry = nationalHolidays[contry] ?? { national: [] };
-  const nationalHolidaysByContryDates = nationalHolidaysByContry.national.map((holiday) => {
+  const nationalHolidays: HolidayByCountry = configHolidays as HolidayByCountry;
+  const nationalHolidaysByCountry = nationalHolidays[country] ?? { national: [] };
+  const nationalHolidaysByCountryDates = nationalHolidaysByCountry.national.map((holiday) => {
     return formatISODate(toDate(`${year}-${holiday.date}`));
   });
-  holidays.push(...nationalHolidaysByContryDates);
+  holidays.push(...nationalHolidaysByCountryDates);
 
   // State Holidays
-  const nationalHolidaysByState = nationalHolidaysByContry.state?.[state] ?? [];
+  const nationalHolidaysByState = nationalHolidaysByCountry.state?.[state] ?? [];
   const nationalHolidaysByStateDates = nationalHolidaysByState.map((holiday) => {
     return formatISODate(toDate(`${year}-${holiday.date}`));
   });
@@ -36,10 +36,10 @@ export function getHolidays(contry: string, state: string, year: number, extraHo
   return holidays;
 }
 
-export function isHoliday(date: string | Date, contry?: string, state?: string, extras: Holiday[] = []): boolean {
+export function isHoliday(date: string | Date, country?: string, state?: string, extras: Holiday[] = []): boolean {
   const d = toDate(date);
   const year = d.getUTCFullYear();
-  const holidays = getHolidays(contry ?? 'BR', state ?? '', year, extras);
+  const holidays = getHolidays(country ?? 'BR', state ?? '', year, extras);
   return holidays.some((holiday) => holiday.startsWith(formatISODate(d).split('T')[0]));
 }
 

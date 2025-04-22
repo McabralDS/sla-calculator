@@ -1,5 +1,5 @@
 export interface SlaOptions {
-  contry?: string;
+  country?: string;
   state?: string;
   startHour?: number;
   endHour?: number;
@@ -8,7 +8,7 @@ export interface SlaOptions {
   extraHolidays?: Holiday[];
 }
 
-export type HolidayByContry = {
+export type HolidayByCountry = {
   [countryCode: string]: {
     national: Holiday[];
     state?: HolidayByState;

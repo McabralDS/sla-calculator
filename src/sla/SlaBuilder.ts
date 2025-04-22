@@ -4,7 +4,7 @@ import { Holiday, SlaOptions } from "../types";
 
 export class SlaBuilder {
   private options: Required<SlaOptions> = {
-    contry: "BR",
+    country: "BR",
     state: "SC",
     startHour: 8,
     endHour: 18,
@@ -26,8 +26,8 @@ export class SlaBuilder {
     return this;
   }
 
-  public country(contry: string): this {
-    this.options.contry = contry;
+  public country(country: string): this {
+    this.options.country = country;
     return this;
   }
 
@@ -37,16 +37,25 @@ export class SlaBuilder {
   }
 
   public startHour(hour: number): this {
+    if (hour < 0 || hour > 23) {
+      throw new Error("Start hour must be between 0 and 23.");
+    }
     this.options.startHour = hour;
     return this;
   }
 
   public endHour(hour: number): this {
+    if (hour < 0 || hour > 23) {
+      throw new Error("End hour must be between 0 and 23.");
+    }
     this.options.endHour = hour;
     return this;
   }
 
   public workHours(hours: number): this {
+    if (hours < 0) {
+      throw new Error("Work hours must be a positive number.");
+    }
     this.options.workHours = hours;
     return this;
   }
@@ -65,7 +74,7 @@ export class SlaBuilder {
     const data = date ? toDate(date) : this.options.data;
     return isHoliday(
       data,
-      this.options.contry,
+      this.options.country,
       this.options.state,
       this.options.extraHolidays
     );
@@ -76,7 +85,7 @@ export class SlaBuilder {
     const year = data.getUTCFullYear();
 
     return getHolidays(
-      this.options.contry,
+      this.options.country,
       this.options.state,
       year,
       this.options.extraHolidays
@@ -93,6 +102,18 @@ export class SlaBuilder {
     return !this.isWeekend(data) && !this.isHoliday(data);
   }
 
+  public nextBusinessDay(date?: string | Date): Date {
+    const data = date ? toDate(date) : this.options.data;
+    let nextDate = new Date(data);
+    nextDate.setUTCDate(nextDate.getUTCDate() + 1);
+
+    while (!this.isBusinessDay(nextDate)) {
+      nextDate.setUTCDate(nextDate.getUTCDate() + 1);
+    }
+
+    return nextDate;
+  }
+
   public calculateSla(): string {
     const { data, workHours, startHour, endHour } = this.options;
     const startDate = toDate(data);
@@ -100,13 +121,8 @@ export class SlaBuilder {
     let currentDate = new Date(startDate);
   
     // Ajuste para começar no próximo dia útil válido
-    while (!this.isBusinessDay(currentDate)) {
-      currentDate = new Date(Date.UTC(
-        currentDate.getUTCFullYear(),
-        currentDate.getUTCMonth(),
-        currentDate.getUTCDate() + 1,
-        startHour, 0, 0, 0
-      ));
+    if(!this.isBusinessDay(currentDate)) {
+      currentDate = this.nextBusinessDay(currentDate);
     }
     
     // Se for dia útil, garante que começa no horário de início
