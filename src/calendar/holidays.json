@@ -43,12 +43,7 @@
       }
     ],
     "state": {
-      "SC": [
-        {
-          "date": "08-17",
-          "name": "Data Magna de Santa Catarina"
-        }
-      ],
+      "SC": [],
       "SP": [
         {
           "date": "01-25",
@@ -56,7 +51,137 @@
         },
         {
           "date": "07-09",
-          "name": "Revolução Constitucionalista"
+          "name": "Revolução Constitucionalista de 1932",
+          "description": "Revolução Constitucionalista de 1932, também conhecida como Revolução de 1932 ou Guerra Paulista, foi o movimento armado ocorrido nos estados de São Paulo, Mato Grosso do Sul e Rio Grande do Sul, entre julho e outubro de 1932, que tinha por objetivo derrubar o governo provisório de Getúlio Vargas e convocar uma Assembleia Nacional Constituinte."
+        }
+      ],
+      "SE": [
+        {
+          "date": "07-08",
+          "name": "Dia da Emancipação do Estado de Sergipe",
+          "description": "Dia da Emancipação do Estado de Sergipe"
+        }
+      ],
+      "RR": [
+        {
+          "date": "10-05",
+          "name": "Aniversário da elevação a estado",
+          "description": "Feriado no estado de Roraima — aniversário da elevação a estado."
+        }
+      ],
+      "RS": [
+        {
+          "date": "09-20",
+          "name": "Revolução Farroupilha",
+          "description": "Em 1835 foi desencadeada a Revolução Farroupilha, que manifestava o descontentamento da Província de São Pedro do Rio Grande, a mais meridional do Império, com o governo regencial do Império do Brasil."
+        }
+      ],
+      "RN": [
+        {
+          "date": "10-03",
+          "name": "Mártires de Cunhaú e Uruaçu",
+          "description": "Feriado dos Mártires de Cunhaú e Uruaçu, Rio Grande do Norte"
+        }
+      ],
+      "PI": [
+        {
+          "date": "10-19",
+          "name": "Dia do Piauí",
+          "description": "Dia do Piauí que é Piauí é uma das 27 unidades federativas do Brasil. Localiza-se no noroeste da Região Nordeste."
+        }
+      ],
+      "PR": [
+        {
+          "date": "12-19",
+          "name": "Emancipação política do Paraná",
+          "description": "A emancipação política do Paraná foi um acontecimento pelo qual o Paraná desmembrou-se da Província de São Paulo, transformando-se na mais nova província do Brasil Império, em 19 de dezembro de 1853. Foi marcante para a história do Paraná a sua emancipação política, que ocorreu em 1853, quando se desmembrou da Província de São Paulo."
+        }
+      ],
+      "PA": [
+        {
+          "date": "08-15",
+          "name": "Adesão do Pará à independência do Brasil",
+          "description": "Adesão do Pará à independência do Brasil (data magna) - Lei estadual nº 5.999/1996"
+        }
+      ],
+      "MG": [
+        {
+          "date": "04-21",
+          "name": "Data magna do estado",
+          "description": "Data magna do estado - Art. 256 da constituição estadual; coincide com o feriado nacional de Tiradentes"
+        }
+      ],
+      "MS": [
+        {
+          "date": "10-11",
+          "name": "Criação do estado",
+          "description": "Criação do estado - Lei estadual nº 10/1979"
+        }
+      ],
+      "MT": [],
+      "MA": [
+        {
+          "date": "07-28",
+          "name": "Adesão do Maranhão à independência do Brasil",
+          "description": "Adesão do Maranhão à independência do Brasil - Lei estadual nº 2.457/1964"
+        }
+      ],
+      "BA": [
+        {
+          "date": "07-02",
+          "name": "Independência da Bahia",
+          "description": "Independência da Bahia (Data magna do estado) - Art. 6º, § 3º da Constituição estadual"
+        }
+      ],
+      "TO": [
+        {
+          "date": "10-05",
+          "name": "Criação do estado",
+          "description": "Criação do estado - Lei estadual nº 98/1989"
+        },
+        {
+          "date": "03-18",
+          "name": "Autonomia do Estado",
+          "description": "Autonomia do Estado (criação da Comarca do Norte) - Lei estadual nº 960/1998"
+        },
+        {
+          "date": "09-08",
+          "name": "Padroeira do Estado",
+          "description": "Padroeira do Estado (Nossa Senhora da Natividade) - Lei estadual nº 627/1993"
+        }
+      ],
+      "RO": [
+        {
+          "date": "01-04",
+          "name": "Criação do estado",
+          "description": "Criação do estado - Lei estadual nº 2291/2010"
+        },
+        {
+          "date": "06-18",
+          "name": "Dia do evangélico",
+          "description": "Dia do evangélico - Lei estadual nº 1.026/2001"
+        }
+      ],
+      "PE": [
+        {
+          "date": "03-06",
+          "name": "Revolução Pernambucana de 1817",
+          "description": "Revolução Pernambucana de 1817 - Lei estadual nº 13.835/2009"
+        },
+        {
+          "date": "06-24",
+          "name": "Festa de São João",
+          "description": "Festa de São João (Festa Junina) - Feriado Estadual"
+        },
+        {
+          "date": "07-16",
+          "name": "Dia de Nossa Senhora do Carmo",
+          "description": "Dia de Nossa Senhora do Carmo (Padroeira da Cidade do Recife) - Feriado religioso"
+        },
+        {
+          "date": "12-08",
+          "name": "Dia de Nossa Senhora da Conceição",
+          "description": "Dia de Nossa Senhora da Conceição (santa de grande devoção pela população da cidade do Recife) - Feriado religioso"
         }
       ]
     }
