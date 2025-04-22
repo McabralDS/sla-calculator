@@ -1,15 +1,16 @@
-import { isHoliday } from '../calendar/holidays';
-import { isWeekend, toDate } from '../utils/date.utils';
-import { SlaOptions } from '../types';
+import { isHoliday, getHolidays } from "../calendar/holidays";
+import { isWeekend, toDate } from "../utils/date.utils";
+import { Holiday, SlaOptions } from "../types";
 
 export class SlaBuilder {
   private options: Required<SlaOptions> = {
-    state: 'BR',
+    contry: "BR",
+    state: "SC",
     startHour: 8,
     endHour: 18,
     workHours: 8,
-    data: new Date(),
-    extraHolidays: []
+    data: toDate(new Date()),
+    extraHolidays: [],
   };
 
   constructor(init?: SlaOptions) {
@@ -17,7 +18,16 @@ export class SlaBuilder {
   }
 
   public set(options: SlaOptions): this {
-    this.options = { ...this.options, ...options, data: toDate(options.data ?? new Date()) };
+    this.options = {
+      ...this.options,
+      ...options,
+      data: toDate(options.data ?? new Date()),
+    };
+    return this;
+  }
+
+  public country(contry: string): this {
+    this.options.contry = contry;
     return this;
   }
 
@@ -26,12 +36,12 @@ export class SlaBuilder {
     return this;
   }
 
-  public start(hour: number): this {
+  public startHour(hour: number): this {
     this.options.startHour = hour;
     return this;
   }
 
-  public end(hour: number): this {
+  public endHour(hour: number): this {
     this.options.endHour = hour;
     return this;
   }
@@ -46,42 +56,119 @@ export class SlaBuilder {
     return this;
   }
 
-  public extraHolidays(holidays: (string | Date)[]): this {
+  public extraHolidays(holidays: Holiday[]): this {
     this.options.extraHolidays = holidays;
     return this;
   }
 
-  public isHoliday(): boolean {
-    return isHoliday(this.options.data, this.options.state, this.options.extraHolidays);
+  public isHoliday(date?: string | Date): boolean {
+    const data = date ? toDate(date) : this.options.data;
+    return isHoliday(
+      data,
+      this.options.contry,
+      this.options.state,
+      this.options.extraHolidays
+    );
   }
 
-  public isWeekend(): boolean {
-    return isWeekend(this.options.data);
+  public getHolidays(date?: string | Date): string[] {
+    const data = date ? toDate(date) : toDate(this.options.data);
+    const year = data.getUTCFullYear();
+
+    return getHolidays(
+      this.options.contry,
+      this.options.state,
+      year,
+      this.options.extraHolidays
+    );
   }
 
-  public isBusinessDay(): boolean {
-    return !this.isWeekend() && !this.isHoliday();
+  public isWeekend(date?: string | Date): boolean {
+    const data = date ? toDate(date) : this.options.data;
+    return isWeekend(toDate(data));
   }
 
-  public calculate(): number {
-    return this.isBusinessDay() ? this.options.workHours : 0;
+  public isBusinessDay(date?: string | Date): boolean {
+    const data = date ? toDate(date) : this.options.data;
+    return !this.isWeekend(data) && !this.isHoliday(data);
   }
 
-  public finalSla(): string {
+  public calculateSla(): string {
     const { data, workHours, startHour, endHour } = this.options;
+    const startDate = toDate(data);
     let remainingHours = workHours;
-    let currentDate = new Date(data);
-
-    while (remainingHours > 0) {
-      if (this.isBusinessDay()) {
-      const availableHours = Math.min(endHour - startHour, remainingHours);
-      currentDate.setHours(startHour + availableHours, 0, 0, 0);
-      remainingHours -= availableHours;
-      }
-      currentDate.setDate(currentDate.getDate() + 1);
-      currentDate.setHours(startHour, 0, 0, 0);
+    let currentDate = new Date(startDate);
+  
+    // Ajuste para começar no próximo dia útil válido
+    while (!this.isBusinessDay(currentDate)) {
+      currentDate = new Date(Date.UTC(
+        currentDate.getUTCFullYear(),
+        currentDate.getUTCMonth(),
+        currentDate.getUTCDate() + 1,
+        startHour, 0, 0, 0
+      ));
     }
-
+    
+    // Se for dia útil, garante que começa no horário de início
+    if (currentDate.getUTCHours() < startHour) {
+      currentDate.setUTCHours(startHour, 0, 0, 0);
+    }
+  
+    while (remainingHours > 0) {
+      if (this.isBusinessDay(currentDate)) {
+        const workDayStart = new Date(Date.UTC(
+          currentDate.getUTCFullYear(),
+          currentDate.getUTCMonth(),
+          currentDate.getUTCDate(),
+          startHour
+        ));
+  
+        const workDayEnd = new Date(Date.UTC(
+          currentDate.getUTCFullYear(),
+          currentDate.getUTCMonth(),
+          currentDate.getUTCDate(),
+          endHour
+        ));
+  
+        if (currentDate < workDayStart) {
+          currentDate = new Date(workDayStart);
+        }
+  
+        if (currentDate >= workDayEnd) {
+          currentDate = new Date(Date.UTC(
+            currentDate.getUTCFullYear(),
+            currentDate.getUTCMonth(),
+            currentDate.getUTCDate() + 1,
+            startHour
+          ));
+          continue;
+        }
+  
+        const millisAvailable = workDayEnd.getTime() - currentDate.getTime();
+        const hoursAvailable = millisAvailable / (1000 * 60 * 60);
+  
+        if (hoursAvailable >= remainingHours) {
+          currentDate = new Date(currentDate.getTime() + remainingHours * 60 * 60 * 1000);
+          remainingHours = 0;
+        } else {
+          remainingHours -= hoursAvailable;
+          currentDate = new Date(Date.UTC(
+            currentDate.getUTCFullYear(),
+            currentDate.getUTCMonth(),
+            currentDate.getUTCDate() + 1,
+            startHour
+          ));
+        }
+      } else {
+        currentDate = new Date(Date.UTC(
+          currentDate.getUTCFullYear(),
+          currentDate.getUTCMonth(),
+          currentDate.getUTCDate() + 1,
+          startHour
+        ));
+      }
+    }
+  
     return currentDate.toISOString();
-  }
+  } 
 }

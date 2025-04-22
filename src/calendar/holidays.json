@@ -1,0 +1,88 @@
+{
+  "BR": {
+    "national": [
+      {
+        "date": "01-01",
+        "name": "Ano Novo"
+      },
+      {
+        "date": "04-21",
+        "name": "Tiradentes"
+      },
+      {
+        "date": "05-01",
+        "name": "Dia do Trabalho"
+      },
+      {
+        "date": "09-07",
+        "name": "Independência do Brasil"
+      },
+      {
+        "date": "10-12",
+        "name": "Nossa Senhora Aparecida"
+      },
+      {
+        "date": "11-02",
+        "name": "Finados"
+      },
+      {
+        "date": "11-15",
+        "name": "Proclamação da República"
+      },
+      {
+        "date": "11-20",
+        "name": "Dia da Consciência Negra"
+      },
+      {
+        "date": "12-25",
+        "name": "Natal"
+      },
+      {
+        "date": "12-31",
+        "name": "Réveillon"
+      }
+    ],
+    "state": {
+      "SC": [
+        {
+          "date": "08-17",
+          "name": "Data Magna de Santa Catarina"
+        }
+      ],
+      "SP": [
+        {
+          "date": "01-25",
+          "name": "Aniversário de São Paulo"
+        },
+        {
+          "date": "07-09",
+          "name": "Revolução Constitucionalista"
+        }
+      ]
+    }
+  },
+  "US": {
+    "national": [
+      {
+        "date": "01-01",
+        "name": "New Year's Day"
+      },
+      {
+        "date": "07-04",
+        "name": "Independence Day"
+      },
+      {
+        "date": "12-25",
+        "name": "Christmas Day"
+      }
+    ],
+    "state": {
+      "CA": [
+        {
+          "date": "11-11",
+          "name": "Veterans Day"
+        }
+      ]
+    }
+  }
+}
