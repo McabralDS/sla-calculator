@@ -1,5 +1,5 @@
 import { isHoliday, getHolidays } from "../calendar/holidays";
-import { isWeekend, toDate } from "../utils/date.utils";
+import { isWeekend, toDate, createUtcDateWithHour } from "../utils/date.utils";
 import { Holiday, TimeFlanOptions } from "../types";
 
 export class TimeFlanBuilder {
@@ -9,7 +9,7 @@ export class TimeFlanBuilder {
     startHour: 8,
     endHour: 18,
     workHours: 8,
-    data: toDate(new Date()),
+    date: toDate(new Date()),
     extraHolidays: [],
   };
 
@@ -21,7 +21,7 @@ export class TimeFlanBuilder {
     this.options = {
       ...this.options,
       ...options,
-      data: toDate(options.data ?? new Date()),
+      date: toDate(options.date ?? new Date()),
     };
     return this;
   }
@@ -61,7 +61,7 @@ export class TimeFlanBuilder {
   }
 
   public date(date: string | Date): this {
-    this.options.data = toDate(date);
+    this.options.date = toDate(date);
     return this;
   }
 
@@ -71,7 +71,7 @@ export class TimeFlanBuilder {
   }
 
   public isHoliday(date?: string | Date): boolean {
-    const data = date ? toDate(date) : this.options.data;
+    const data = date ? toDate(date) : this.options.date;
     return isHoliday(
       data,
       this.options.country,
@@ -81,7 +81,7 @@ export class TimeFlanBuilder {
   }
 
   public getHolidays(date?: string | Date): string[] {
-    const data = date ? toDate(date) : toDate(this.options.data);
+    const data = date ? toDate(date) : toDate(this.options.date);
     const year = data.getUTCFullYear();
 
     return getHolidays(
@@ -93,17 +93,17 @@ export class TimeFlanBuilder {
   }
 
   public isWeekend(date?: string | Date): boolean {
-    const data = date ? toDate(date) : this.options.data;
+    const data = date ? toDate(date) : this.options.date;
     return isWeekend(toDate(data));
   }
 
   public isBusinessDay(date?: string | Date): boolean {
-    const data = date ? toDate(date) : this.options.data;
+    const data = date ? toDate(date) : this.options.date;
     return !this.isWeekend(data) && !this.isHoliday(data);
   }
 
   public nextBusinessDay(date?: string | Date): Date {
-    const data = date ? toDate(date) : this.options.data;
+    const data = date ? toDate(date) : this.options.date;
     let nextDate = new Date(data);
     nextDate.setUTCDate(nextDate.getUTCDate() + 1);
 
@@ -115,8 +115,8 @@ export class TimeFlanBuilder {
   }
 
   public calculate(): string {
-    const { data, workHours, startHour, endHour } = this.options;
-    const startDate = toDate(data);
+    const { date, workHours, startHour, endHour } = this.options;
+    const startDate = toDate(date);
     let remainingHours = workHours;
     let currentDate = new Date(startDate);
   
@@ -132,31 +132,17 @@ export class TimeFlanBuilder {
   
     while (remainingHours > 0) {
       if (this.isBusinessDay(currentDate)) {
-        const workDayStart = new Date(Date.UTC(
-          currentDate.getUTCFullYear(),
-          currentDate.getUTCMonth(),
-          currentDate.getUTCDate(),
-          startHour
-        ));
-  
-        const workDayEnd = new Date(Date.UTC(
-          currentDate.getUTCFullYear(),
-          currentDate.getUTCMonth(),
-          currentDate.getUTCDate(),
-          endHour
-        ));
+
+        const workDayStart = createUtcDateWithHour(currentDate, startHour);
+
+        const workDayEnd = createUtcDateWithHour(currentDate, endHour);
   
         if (currentDate < workDayStart) {
           currentDate = new Date(workDayStart);
         }
   
         if (currentDate >= workDayEnd) {
-          currentDate = new Date(Date.UTC(
-            currentDate.getUTCFullYear(),
-            currentDate.getUTCMonth(),
-            currentDate.getUTCDate() + 1,
-            startHour
-          ));
+          currentDate = createUtcDateWithHour(currentDate, startHour, 1);
           continue;
         }
   
@@ -168,20 +154,10 @@ export class TimeFlanBuilder {
           remainingHours = 0;
         } else {
           remainingHours -= hoursAvailable;
-          currentDate = new Date(Date.UTC(
-            currentDate.getUTCFullYear(),
-            currentDate.getUTCMonth(),
-            currentDate.getUTCDate() + 1,
-            startHour
-          ));
+          currentDate = createUtcDateWithHour(currentDate, startHour, 1);
         }
       } else {
-        currentDate = new Date(Date.UTC(
-          currentDate.getUTCFullYear(),
-          currentDate.getUTCMonth(),
-          currentDate.getUTCDate() + 1,
-          startHour
-        ));
+        currentDate = createUtcDateWithHour(currentDate, startHour, 1);
       }
     }
   

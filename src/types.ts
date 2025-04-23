@@ -4,7 +4,7 @@ export interface TimeFlanOptions {
   startHour?: number;
   endHour?: number;
   workHours?: number;
-  data?: string | Date;
+  date?: string | Date;
   extraHolidays?: Holiday[];
 }
 

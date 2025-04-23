@@ -49,3 +49,19 @@ export function isWeekend(date: Date): boolean {
   const day = date.getUTCDay();
   return day === 0 || day === 6;
 }
+
+export function createUtcDateWithHour(date: Date, hour: number, offsetDay?:number): Date {
+
+  const dateToUse = new Date(date);
+
+  if (offsetDay) {
+    dateToUse.setUTCDate(dateToUse.getUTCDate() + offsetDay);
+  }
+
+  return new Date(Date.UTC(
+    dateToUse.getUTCFullYear(),
+    dateToUse.getUTCMonth(),
+    dateToUse.getUTCDate(),
+    hour
+  ));
+}
