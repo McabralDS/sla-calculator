@@ -1,20 +1,26 @@
 {
-    "name": "time-flan",
-    "version": "0.3.0",
-    "description": "Biblioteca para cálculo de SLA, considerando feriados estaduais e dias úteis.",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "scripts": {
-      "build": "tsc",
-      "test": "vitest run",
-      "dev": "vitest watch"
-    },
-    "keywords": ["time","flan","sla", "typescript", "feriados", "lib"],
-    "author": "Mateus Cabral dos Santos",
-    "license": "MIT",
-    "devDependencies": {
-      "typescript": "^5.3.3",
-      "vitest": "^1.2.0"
-    }
+  "name": "time-flan",
+  "version": "0.3.0",
+  "description": "Biblioteca para cálculo de SLA, considerando feriados estaduais e dias úteis.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "dev": "vitest watch"
+  },
+  "keywords": [
+    "time",
+    "flan",
+    "sla",
+    "typescript",
+    "feriados",
+    "lib"
+  ],
+  "author": "Mateus Cabral dos Santos",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.0"
   }
-  
+}
