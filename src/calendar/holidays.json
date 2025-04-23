@@ -45,11 +45,6 @@
         "date": "12-25",
         "name": "Natal",
         "description": "Celebração do nascimento de Jesus Cristo"
-      },
-      {
-        "date": "12-31",
-        "name": "Réveillon",
-        "description": "Celebração da virada do ano"
       }
     ],
     "state": {
