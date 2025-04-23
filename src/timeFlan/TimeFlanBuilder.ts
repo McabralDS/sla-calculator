@@ -1,9 +1,9 @@
 import { isHoliday, getHolidays } from "../calendar/holidays";
 import { isWeekend, toDate } from "../utils/date.utils";
-import { Holiday, SlaOptions } from "../types";
+import { Holiday, TimeFlanOptions } from "../types";
 
-export class SlaBuilder {
-  private options: Required<SlaOptions> = {
+export class TimeFlanBuilder {
+  private options: Required<TimeFlanOptions> = {
     country: "BR",
     state: "SC",
     startHour: 8,
@@ -13,11 +13,11 @@ export class SlaBuilder {
     extraHolidays: [],
   };
 
-  constructor(init?: SlaOptions) {
+  constructor(init?: TimeFlanOptions) {
     if (init) this.set(init);
   }
 
-  public set(options: SlaOptions): this {
+  public set(options: TimeFlanOptions): this {
     this.options = {
       ...this.options,
       ...options,
@@ -114,7 +114,7 @@ export class SlaBuilder {
     return nextDate;
   }
 
-  public calculateSla(): string {
+  public calculate(): string {
     const { data, workHours, startHour, endHour } = this.options;
     const startDate = toDate(data);
     let remainingHours = workHours;

@@ -1,8 +1,8 @@
-import { SlaBuilder } from './sla/SlaBuilder';
-import { SlaOptions } from './types';
+import { TimeFlanBuilder } from './timeFlan/TimeFlanBuilder';
+import { TimeFlanOptions } from './types';
 
-export function Sla(options?: SlaOptions) {
-  return new SlaBuilder(options);
+export function TimeFlan(options?: TimeFlanOptions) {
+  return new TimeFlanBuilder(options);
 }
 
-export { SlaBuilder };
+export { TimeFlanBuilder };

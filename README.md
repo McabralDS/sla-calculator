@@ -1,153 +1,197 @@
-# SLA Calculator
 
-A powerful SLA (Service Level Agreement) calculator library built with TypeScript. This library allows you to calculate SLA deadlines while considering holidays (national and state-specific) and business days. It is highly customizable and supports extra holidays, different working hours, and multiple countries and states.
+<p align="center">
+  <img src="time-flan.png" alt="Time Flan" width="300"/>
+</p>
 
-## Features
+# Time Flan
 
-- **SLA Calculation**: Calculate SLA deadlines based on working hours and business days.
-- **Holiday Support**: Includes national and state-specific holidays for Brazil and the United States.
-- **Custom Holidays**: Add extra holidays specific to your organization or project.
-- **Weekend Detection**: Automatically skips weekends when calculating SLA deadlines.
-- **Business Day Validation**: Check if a given date is a business day.
-- **Customizable Working Hours**: Define start and end working hours for SLA calculations.
-- **Multi-country Support**: Currently supports Brazil (BR) and the United States (US).
+**Time Flan** is a smart business time calculator library written in TypeScript. It provides flexible and accurate time calculations by taking holidays, weekends, and custom working hours into account. Perfect for SLA estimations, deadline validation, or any scenario where *working time awareness* is essential.
 
-## Installation
+---
 
-Install the library using `npm` or `pnpm`:
+## ✨ Features
+
+- 📅 **Holiday Awareness**: Supports national and regional holidays (Brazil and USA).
+- 📆 **Weekend Detection**: Skips Saturdays and Sundays automatically.
+- 🚫 **Non-Working Days**: Check if a date is a business day or a holiday.
+- ⏱️ **Smart SLA Estimation**: Calculate deadlines based on working hours, including custom schedules.
+- 🧩 **Custom Holidays**: Add your own dates like company anniversaries or one-off breaks.
+- 🕒 **Configurable Working Hours**: Define working start/end times for accurate calculations.
+- 🌎 **Multi-Country Support**: Out-of-the-box for `BR` (Brazil) and `US` (United States).
+
+---
+
+## 📦 Installation
 
 ```bash
-npm install sla-calculator
+npm install time-flan
+# or
+pnpm add time-flan
 ```
 
-or 
+---
 
-```bash
-pnpm add sla-calculator
-``` 
+## 🚀 Usage
 
-## Usage
-importing the Library
+### Importing
 
-```
-import { Sla } from 'sla-calculator'
+```ts
+import { TimeFlan } from 'time-flan';
 ```
 
-Basic SLA Calculation
+---
 
-```
-const sla = Sla()
+### SLA Calculation
+
+```ts
+const result = TimeFlan()
   .country('BR')
   .state('SP')
   .startHour(8)
   .endHour(18)
   .workHours(16)
-  .date('2025-12-22T08:00:00.000Z');
+  .date('2025-12-22T08:00:00.000Z')
+  .calculateSla();
 
-const result = sla.calculateSla();
 console.log(result); // Outputs the SLA deadline considering holidays and weekends
 ```
 
-Checking if a Date is a Holiday
-```
-const sla = Sla().country('BR').state('SC');
-const isHoliday = sla.date('2025-12-25').isHoliday();
+---
+
+### Check if a Date is a Holiday
+
+```ts
+const isHoliday = TimeFlan()
+  .country('BR')
+  .state('SC')
+  .date('2025-12-25')
+  .isHoliday();
+
 console.log(isHoliday); // true (Christmas)
 ```
 
-Adding Extra Holidays
-```
+---
+
+### Add Extra Holidays
+
+```ts
 const extraHolidays = [
   { name: 'Company Anniversary', date: '2025-11-02' },
 ];
 
-const sla = Sla().extraHolidays(extraHolidays);
-const holidays = sla.getHolidays();
-console.log(holidays); // Includes the extra holiday
+const holidays = TimeFlan()
+  .extraHolidays(extraHolidays)
+  .getHolidays();
+
+console.log(holidays);
 ```
 
-Checking if a Date is a Business Day
+---
+
+### Check if a Date is a Business Day
+
+```ts
+const isBusiness = TimeFlan()
+  .date('2025-12-25')
+  .isBusinessDay();
+
+console.log(isBusiness); // false
 ```
-const sla = Sla().date('2025-12-25'); // Christmas
-console.log(sla.isBusinessDay()); // false
+
+---
+
+### Detect Weekend
+
+```ts
+const isWeekend = TimeFlan()
+  .date('2025-12-28')
+  .isWeekend();
+
+console.log(isWeekend); // true
 ```
 
-Detecting Weekends
+---
 
-```
-const sla = Sla().date('2025-12-28'); // Sunday
-console.log(sla.isWeekend()); // true
-```
+## 🧩 API Reference
 
+### `TimeFlan(options?: TimeFlanOptions)`
 
-## API Reference
-`Sla(options?: SlaOptions)`
+Creates a new instance.
 
-Creates a new SLA calculator instance.
+#### Options:
 
-### Options
-- `country` (string): Country code (e.g., 'BR' for Brazil).
-- `state` (string): State code (e.g., 'SP' for São Paulo).
-- `startHour` (number): Start of the working day (e.g., 8 for 8:00 AM).
-- `endHour` (number): End of the working day (e.g., 18 for 6:00 PM).
-- `workHours` (number): Total working hours for the SLA.
-- `date` (string | Date): Start date for the SLA calculation.
-- `extraHolidays` (Holiday[]): Array of additional holidays.
+- `country` (string) – ISO country code (e.g. `'BR'`)
+- `state` (string) – Region/state code (e.g. `'SP'`)
+- `startHour` (number) – Start of working day (0-23)
+- `endHour` (number) – End of working day (0-23)
+- `workHours` (number) – Total hours of work
+- `date` (string | Date) – Initial date for calculation
+- `extraHolidays` (Holiday[]) – Additional holidays
 
-### Methods
-- `country(country: string): this`: Sets the country.
-- `state(state: string): this`: Sets the state.
-- `startHour(hour: number): this`: Sets the start hour.
-- `endHour(hour: number): this`: Sets the end hour.
-- `workHours(hours: number): this`: Sets the total working hours.
-- `date(date: string | Date): this`: Sets the start date.
-- `extraHolidays(holidays: Holiday[]): this`: Adds extra holidays.
-- `isHoliday(date?: string | Date): boolean`: Checks if a date is a holiday.
-- `getHolidays(date?: string | Date): string[]`: Retrieves all holidays for the year.
-- `isWeekend(date?: string | Date): boolean`: Checks if a date is a weekend.
-- `isBusinessDay(date?: string | Date): boolean`: Checks if a date is a business day.
-- `calculateSla(): string`: Calculates the SLA deadline.
+#### Methods:
 
-## Supported Countries and States
-Brazil (BR)
+- `country(code: string): this`
+- `state(code: string): this`
+- `startHour(hour: number): this`
+- `endHour(hour: number): this`
+- `workHours(hours: number): this`
+- `date(date: string | Date): this`
+- `extraHolidays(holidays: Holiday[]): this`
+- `isHoliday(date?: string | Date): boolean`
+- `isWeekend(date?: string | Date): boolean`
+- `isBusinessDay(date?: string | Date): boolean`
+- `getHolidays(): Holiday[]`
+- `calculateSla(): string`
+
+---
+
+## 🌍 Supported Locations
+
+### Brazil (`BR`)
 - National holidays
-- State-specific holidays (e.g., São Paulo, Santa Catarina)
+- State-specific holidays (e.g. São Paulo, Santa Catarina)
 
-United States (US)
+### United States (`US`)
 - National holidays
-- State-specific holidays (e.g., California)
+- State-specific holidays (e.g. California)
 
-## Inspiration
-This library was inspired by the project eh-dia-util by lfreneda, which provides utilities for working with business days and holidays in Brazil.
+---
 
-## Development
-Running Tests
-The library uses Vitest for testing. To run the tests:
+## 🧪 Development
+
+### Run tests
+
 ```bash
 npm test
-```
-
-or
-```bash
+# or
 pnpm test
 ```
 
-Building the Library
-To build the library:
+> Uses **Vitest** under the hood.
+
+### Build
+
 ```bash
 npm run build
-```
-
-or
-```bash
+# or
 pnpm run build
 ```
 
+---
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+## 🙌 Credits
+
+Inspired by the project [eh-dia-util](https://github.com/lfreneda/eh-dia-util) by [lfreneda](https://github.com/lfreneda).
 
 ---
-### Developed by Mateus Cabral dos Santos
 
-[GitHub Profile - McabralDS](https://github.com/McabralDS)
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+---
+
+### Developed by [Mateus Cabral dos Santos](https://github.com/McabralDS)
+
+
+---

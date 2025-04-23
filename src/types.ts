@@ -1,4 +1,4 @@
-export interface SlaOptions {
+export interface TimeFlanOptions {
   country?: string;
   state?: string;
   startHour?: number;
