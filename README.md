@@ -51,7 +51,7 @@ const result = TimeFlan()
   .endHour(18)
   .workHours(16)
   .date('2025-12-22T08:00:00.000Z')
-  .calculateSla();
+  .calculate();
 
 console.log(result); // Outputs the SLA deadline considering holidays and weekends
 ```
@@ -141,7 +141,7 @@ Creates a new instance.
 - `isWeekend(date?: string | Date): boolean`
 - `isBusinessDay(date?: string | Date): boolean`
 - `getHolidays(): Holiday[]`
-- `calculateSla(): string`
+- `calculate(): string`
 
 ---
 
