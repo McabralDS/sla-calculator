@@ -27,12 +27,12 @@ export class TimeFlanBuilder {
   }
 
   public country(country: string): this {
-    this.options.country = country;
+    this.options.country = country.toUpperCase();
     return this;
   }
 
   public state(state: string): this {
-    this.options.state = state;
+    this.options.state = state.toUpperCase();
     return this;
   }
 
