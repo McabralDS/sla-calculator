@@ -1,4 +1,4 @@
-{
+const configHolidays = {
   "BR": {
     "national": [
       {
@@ -273,3 +273,5 @@
     }
   }
 }
+
+export default configHolidays;

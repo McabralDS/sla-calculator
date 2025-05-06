@@ -1,5 +1,5 @@
-import { isHoliday, getHolidays } from "../calendar/holidays";
-import { isWeekend, toDate, createUtcDateWithHour } from "../utils/date.utils";
+import { isHoliday, getHolidays } from "../calendar/holidays.js";
+import { isWeekend, toDate, createUtcDateWithHour } from "../utils/date.utils.js";
 import { Holiday, TimeFlanOptions } from "../types";
 
 export class TimeFlanBuilder {

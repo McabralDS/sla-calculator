@@ -1,0 +1,275 @@
+{
+    "BR": {
+        "national": [
+            {
+                "date": "01-01",
+                "name": "Ano Novo",
+                "description": "Celebração do início do ano civil"
+            },
+            {
+                "date": "04-21",
+                "name": "Tiradentes",
+                "description": "Homenagem a Joaquim José da Silva Xavier, o Tiradentes"
+            },
+            {
+                "date": "05-01",
+                "name": "Dia do Trabalho",
+                "description": "Comemoração dos direitos dos trabalhadores"
+            },
+            {
+                "date": "09-07",
+                "name": "Independência do Brasil",
+                "description": "Proclamação da independência em 1822"
+            },
+            {
+                "date": "10-12",
+                "name": "Nossa Senhora Aparecida",
+                "description": "Padroeira do Brasil"
+            },
+            {
+                "date": "11-02",
+                "name": "Finados",
+                "description": "Dia de Finados – homenagem aos mortos"
+            },
+            {
+                "date": "11-15",
+                "name": "Proclamação da República",
+                "description": "Aniversário da Proclamação da República em 1889"
+            },
+            {
+                "date": "11-20",
+                "name": "Consciência Negra",
+                "description": "Homenagem à luta e à cultura afro-brasileira"
+            },
+            {
+                "date": "12-25",
+                "name": "Natal",
+                "description": "Celebração do nascimento de Jesus Cristo"
+            }
+        ],
+        "state": {
+            "BA": [
+                {
+                    "date": "07-02",
+                    "name": "Independência da Bahia",
+                    "description": "Data magna da Bahia – celebração em 1823"
+                }
+            ],
+            "MA": [
+                {
+                    "date": "07-28",
+                    "name": "Adesão do Maranhão à Independência",
+                    "description": "Data magna do Maranhão – adesão em 1823"
+                }
+            ],
+            "MG": [
+                {
+                    "date": "04-21",
+                    "name": "Data Magna de Minas Gerais",
+                    "description": "Comemoração de Tiradentes como feriado estadual"
+                }
+            ],
+            "MS": [
+                {
+                    "date": "10-11",
+                    "name": "Criação do Mato Grosso do Sul",
+                    "description": "Aniversário da criação do estado em 1979"
+                }
+            ],
+            "PA": [
+                {
+                    "date": "08-15",
+                    "name": "Adesão do Pará à Independência",
+                    "description": "Data magna do Pará – adesão em 1823"
+                }
+            ],
+            "PE": [
+                {
+                    "date": "03-06",
+                    "name": "Revolução Pernambucana de 1817",
+                    "description": "Aniversário da Revolução que contestou o governo imperial"
+                },
+                {
+                    "date": "06-24",
+                    "name": "São João",
+                    "description": "Feriado de São João em Pernambuco"
+                },
+                {
+                    "date": "07-16",
+                    "name": "Nossa Senhora do Carmo",
+                    "description": "Padroeira de Pernambuco"
+                },
+                {
+                    "date": "12-08",
+                    "name": "Nossa Senhora da Conceição",
+                    "description": "Padroeira do Recife"
+                }
+            ],
+            "PI": [
+                {
+                    "date": "10-19",
+                    "name": "Dia do Piauí",
+                    "description": "Comemoração da criação da província em 1823"
+                }
+            ],
+            "PR": [
+                {
+                    "date": "12-19",
+                    "name": "Emancipação Política do Paraná",
+                    "description": "Aniversário da criação do estado em 1853"
+                }
+            ],
+            "RN": [
+                {
+                    "date": "10-03",
+                    "name": "Mártires de Cunhaú e Uruaçu",
+                    "description": "Homenagem aos mártires de 1645 no RN"
+                }
+            ],
+            "RO": [
+                {
+                    "date": "01-04",
+                    "name": "Criação de Rondônia",
+                    "description": "Aniversário da criação do estado em 1981"
+                },
+                {
+                    "date": "06-18",
+                    "name": "Dia do Evangélico",
+                    "description": "Feriado religioso em Rondônia"
+                }
+            ],
+            "RS": [
+                {
+                    "date": "09-20",
+                    "name": "Revolução Farroupilha",
+                    "description": "Início da Revolução Farroupilha em 1835"
+                }
+            ],
+            "RR": [
+                {
+                    "date": "10-05",
+                    "name": "Elevação de Roraima a Estado",
+                    "description": "Aniversário da criação do estado em 1988"
+                }
+            ],
+            "SC": [],
+            "SE": [
+                {
+                    "date": "07-08",
+                    "name": "Emancipação de Sergipe",
+                    "description": "Aniversário da criação do estado em 1824"
+                }
+            ],
+            "SP": [
+                {
+                    "date": "01-25",
+                    "name": "Aniversário de São Paulo",
+                    "description": "Fundação da cidade de São Paulo em 1554"
+                },
+                {
+                    "date": "07-09",
+                    "name": "Revolução Constitucionalista de 1932",
+                    "description": "Movimento armado pela nova Constituição"
+                }
+            ],
+            "TO": [
+                {
+                    "date": "03-18",
+                    "name": "Autonomia do Tocantins",
+                    "description": "Data magna do estado – criação da Comarca do Norte em 1989"
+                },
+                {
+                    "date": "09-08",
+                    "name": "Nossa Senhora da Natividade",
+                    "description": "Padroeira de Tocantins"
+                },
+                {
+                    "date": "10-05",
+                    "name": "Criação do Tocantins",
+                    "description": "Aniversário da criação do estado em 1988"
+                }
+            ]
+        }
+    },
+    "US": {
+        "national": [
+            {
+                "date": "01-01",
+                "name": "New Year's Day",
+                "description": "Celebration of the first day of the year"
+            },
+            {
+                "date": "06-19",
+                "name": "Juneteenth National Independence Day",
+                "description": "Commemorates the emancipation of enslaved African Americans"
+            },
+            {
+                "date": "07-04",
+                "name": "Independence Day",
+                "description": "Commemoration of the Declaration of Independence (1776)"
+            },
+            {
+                "date": "11-11",
+                "name": "Veterans Day",
+                "description": "Honors military veterans"
+            },
+            {
+                "date": "12-25",
+                "name": "Christmas Day",
+                "description": "Celebration of the birth of Jesus Christ"
+            }
+        ],
+        "state": {
+            "AL": [],
+            "AK": [],
+            "AZ": [],
+            "AR": [],
+            "CA": [],
+            "CO": [],
+            "CT": [],
+            "DE": [],
+            "FL": [],
+            "GA": [],
+            "HI": [],
+            "ID": [],
+            "IL": [],
+            "IN": [],
+            "IA": [],
+            "KS": [],
+            "KY": [],
+            "LA": [],
+            "ME": [],
+            "MD": [],
+            "MA": [],
+            "MI": [],
+            "MN": [],
+            "MS": [],
+            "MO": [],
+            "MT": [],
+            "NE": [],
+            "NV": [],
+            "NH": [],
+            "NJ": [],
+            "NM": [],
+            "NY": [],
+            "NC": [],
+            "ND": [],
+            "OH": [],
+            "OK": [],
+            "OR": [],
+            "PA": [],
+            "RI": [],
+            "SC": [],
+            "SD": [],
+            "TN": [],
+            "TX": [],
+            "UT": [],
+            "VT": [],
+            "VA": [],
+            "WA": [],
+            "WV": [],
+            "WI": [],
+            "WY": []
+        }
+    }
+}

@@ -1,5 +1,5 @@
-import { formatISODate, toDate } from '../utils/date.utils';
-import configHolidays from './holidays.json';
+import { formatISODate, toDate } from '../utils/date.utils.js';
+import configHolidays from './holidaysConfig.js';
 import { Holiday, HolidayByCountry } from '../types';
 
 export function getHolidays(country: string, state: string, year: number, extraHolidays: Holiday[]): string[] {
