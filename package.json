@@ -1,6 +1,6 @@
 {
   "name": "time-flan",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Biblioteca para cálculo de SLA, considerando feriados estaduais e dias úteis.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
