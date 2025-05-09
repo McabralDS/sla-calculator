@@ -1,4 +1,3 @@
-
 <p align="center">
   <img src="time-flan.png" alt="Time Flan" width="300"/>
 </p>
@@ -193,5 +192,10 @@ This project is licensed under the MIT License. See the [LICENSE](./LICENSE) fil
 
 ### Developed by [Mateus Cabral dos Santos](https://github.com/McabralDS)
 
+---
+
+## 📦 GitHub
+
+Find this project on GitHub: [https://github.com/McabralDS/time-flan](https://github.com/McabralDS/time-flan)
 
 ---
