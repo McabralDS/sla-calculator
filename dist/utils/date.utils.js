@@ -1,4 +1,10 @@
-export function toDate(input) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.toDate = toDate;
+exports.formatISODate = formatISODate;
+exports.isWeekend = isWeekend;
+exports.createUtcDateWithHour = createUtcDateWithHour;
+function toDate(input) {
     if (input instanceof Date) {
         return new Date(Date.UTC(input.getUTCFullYear(), input.getUTCMonth(), input.getUTCDate(), input.getUTCHours(), input.getUTCMinutes(), input.getUTCSeconds(), input.getUTCMilliseconds()));
     }
@@ -9,14 +15,14 @@ export function toDate(input) {
     }
     throw new Error(`Invalid date format: ${input}`);
 }
-export function formatISODate(date) {
+function formatISODate(date) {
     return date.toISOString(); // Retorna o formato completo com o timestamp
 }
-export function isWeekend(date) {
+function isWeekend(date) {
     const day = date.getUTCDay();
     return day === 0 || day === 6;
 }
-export function createUtcDateWithHour(date, hour, offsetDay) {
+function createUtcDateWithHour(date, hour, offsetDay) {
     const dateToUse = new Date(date);
     if (offsetDay) {
         dateToUse.setUTCDate(dateToUse.getUTCDate() + offsetDay);

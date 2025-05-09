@@ -1,18 +1,29 @@
-import { formatISODate, toDate } from '../utils/date.utils.js';
-import configHolidays from './holidaysConfig.js';
-export function getHolidays(country, state, year, extraHolidays) {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.getHolidays = getHolidays;
+exports.isHoliday = isHoliday;
+exports.calculateEaster = calculateEaster;
+exports.calculateGodsFriday = calculateGodsFriday;
+exports.calculateCorpusChristi = calculateCorpusChristi;
+exports.calculateCarnival = calculateCarnival;
+const date_utils_js_1 = require("../utils/date.utils.js");
+const holidaysConfig_js_1 = __importDefault(require("./holidaysConfig.js"));
+function getHolidays(country, state, year, extraHolidays) {
     const holidays = [];
     // National Holidays
-    const nationalHolidays = configHolidays;
+    const nationalHolidays = holidaysConfig_js_1.default;
     const nationalHolidaysByCountry = nationalHolidays[country] ?? { national: [] };
     const nationalHolidaysByCountryDates = nationalHolidaysByCountry.national.map((holiday) => {
-        return formatISODate(toDate(`${year}-${holiday.date}`));
+        return (0, date_utils_js_1.formatISODate)((0, date_utils_js_1.toDate)(`${year}-${holiday.date}`));
     });
     holidays.push(...nationalHolidaysByCountryDates);
     // State Holidays
     const nationalHolidaysByState = nationalHolidaysByCountry.state?.[state] ?? [];
     const nationalHolidaysByStateDates = nationalHolidaysByState.map((holiday) => {
-        return formatISODate(toDate(`${year}-${holiday.date}`));
+        return (0, date_utils_js_1.formatISODate)((0, date_utils_js_1.toDate)(`${year}-${holiday.date}`));
     });
     holidays.push(...nationalHolidaysByStateDates);
     // Easter-related Holidays
@@ -23,18 +34,18 @@ export function getHolidays(country, state, year, extraHolidays) {
     holidays.push(calculateCarnival(year)); // Carnival
     // Extra Holidays
     const extraHolidaysDates = extraHolidays.map((holiday) => {
-        return formatISODate(toDate(holiday.date));
+        return (0, date_utils_js_1.formatISODate)((0, date_utils_js_1.toDate)(holiday.date));
     });
     holidays.push(...extraHolidaysDates);
     return holidays;
 }
-export function isHoliday(date, country, state, extras = []) {
-    const d = toDate(date);
+function isHoliday(date, country, state, extras = []) {
+    const d = (0, date_utils_js_1.toDate)(date);
     const year = d.getUTCFullYear();
     const holidays = getHolidays(country ?? 'BR', state ?? '', year, extras);
-    return holidays.some((holiday) => holiday.startsWith(formatISODate(d).split('T')[0]));
+    return holidays.some((holiday) => holiday.startsWith((0, date_utils_js_1.formatISODate)(d).split('T')[0]));
 }
-export function calculateEaster(year) {
+function calculateEaster(year) {
     const C = Math.floor(year / 100);
     const N = year - 19 * Math.floor(year / 19);
     const K = Math.floor((C - 17) / 25);
@@ -50,18 +61,18 @@ export function calculateEaster(year) {
     const day = (D < 10 ? '0' : '') + D;
     return `${year}-${month}-${day}T00:00:00.000Z`;
 }
-export function calculateGodsFriday(year) {
-    const easterDate = toDate(calculateEaster(year));
+function calculateGodsFriday(year) {
+    const easterDate = (0, date_utils_js_1.toDate)(calculateEaster(year));
     easterDate.setUTCDate(easterDate.getUTCDate() - 2);
-    return formatISODate(easterDate);
+    return (0, date_utils_js_1.formatISODate)(easterDate);
 }
-export function calculateCorpusChristi(year) {
-    const easterDate = toDate(calculateEaster(year));
+function calculateCorpusChristi(year) {
+    const easterDate = (0, date_utils_js_1.toDate)(calculateEaster(year));
     easterDate.setUTCDate(easterDate.getUTCDate() + 60);
-    return formatISODate(easterDate);
+    return (0, date_utils_js_1.formatISODate)(easterDate);
 }
-export function calculateCarnival(year) {
-    const easterDate = toDate(calculateEaster(year));
+function calculateCarnival(year) {
+    const easterDate = (0, date_utils_js_1.toDate)(calculateEaster(year));
     easterDate.setUTCDate(easterDate.getUTCDate() - 47);
-    return formatISODate(easterDate);
+    return (0, date_utils_js_1.formatISODate)(easterDate);
 }

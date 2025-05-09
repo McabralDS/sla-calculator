@@ -1,3 +1,5 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const configHolidays = {
     "BR": {
         "national": [
@@ -273,4 +275,4 @@ const configHolidays = {
         }
     }
 };
-export default configHolidays;
+exports.default = configHolidays;
