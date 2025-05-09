@@ -1,5 +1,7 @@
 <p align="center">
-  <img src="time-flan.png" alt="Time Flan" width="300"/>
+  <a href="https://github.com/McabralDS/time-flan">
+    <img src="https://raw.githubusercontent.com/McabralDS/time-flan/main/time-flan.png" alt="Time Flan" width="300"/>
+  </a>
 </p>
 
 # Time Flan
